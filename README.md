@@ -1,4 +1,4 @@
 # Aeon-test-task
-Стандартный юзер: User1/123456
-Авторизация на JWT token
-Доступен Swagger
+<p>Стандартный юзер: User1/123456.</p>
+<p>Авторизация на JWT token.</p>
+<p>Доступен Swagger.</p>
