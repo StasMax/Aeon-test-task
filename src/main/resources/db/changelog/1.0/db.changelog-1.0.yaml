@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include: { relativeToChangelogFile: true, file: user.yaml }
+  - include: { relativeToChangelogFile: true, file: payment.yaml }
+  - include: { relativeToChangelogFile: true, file: incorrect_token.yaml }

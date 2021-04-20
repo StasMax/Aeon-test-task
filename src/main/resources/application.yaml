@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aeon-test
+    username: imitator
+    password: imitator
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    enabled: true
+
+app:
+  version: @project.version@
+  default-balance: 8
+  default-payment: 1.1
+  jwtSecret: Secret_Key
+  jwtExpirationMs: 600000
+
+brute:
+  force:
+    lock:
+      minute: 2
+    failedlogin:
+      count: 3
+
+
+fixedDelay:
+  milliseconds: 600000

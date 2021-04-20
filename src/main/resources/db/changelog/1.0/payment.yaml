@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 16042021-create-sequense-payment
+      author: Stanislav Maksimovich
+      changes:
+        - createSequence:
+            sequenceName: payment_seq
+            startValue: 1
+
+  - changeSet:
+      id: 16042021-create-table-payment
+      author: Stanislav Maksimovich
+      changes:
+        - createTable:
+            tableName: payment
+            columns:
+              - column: { name: id, type: bigint }
+              - column: { name: payment_date , type: timestamp }
+              - column: { name: payment_amount , type: numeric }
+              - column: { name: before_balance , type: numeric }
+              - column: { name: after_balance , type: numeric }
+              - column: { name: user_id, type: bigint }
+
+  - changeSet:
+      id: 16042021-create-user-constraint
+      author: Stanislav Maksimovich
+      changes:
+        - addPrimaryKey:
+            columnNames: id
+            tableName: payment
+        - addNotNullConstraint:
+            tableName: payment
+            columnName: payment_date
+            columnDataType: timestamp
+        - addNotNullConstraint:
+            tableName: payment
+            columnName: payment_amount
+            columnDataType: numeric
+        - addNotNullConstraint:
+            tableName: payment
+            columnName: before_balance
+            columnDataType: numeric
+        - addNotNullConstraint:
+            tableName: payment
+            columnName: after_balance
+            columnDataType: numeric
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: payment
+            constraintName: fk_payment
+            referencedColumnNames: id
+            referencedTableName: "usr"
+

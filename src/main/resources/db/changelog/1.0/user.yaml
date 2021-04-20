@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: 16042021-create-sequense-user
+      author: Stanislav Maksimovich
+      changes:
+        - createSequence:
+            sequenceName: user_seq
+            startValue: 2
+
+  - changeSet:
+      id: 16042021-create-table-user
+      author: Stanislav Maksimovich
+      changes:
+        - createTable:
+            tableName: usr
+            columns:
+              - column: { name: id, type: bigint }
+              - column: { name: login , type: varchar(256) }
+              - column: { name: password , type: varchar(256) }
+              - column: { name: balance , type: numeric }
+              - column: { name: failed_login_attempts , type: integer }
+              - column: { name: lock_time , type: timestamp }
+
+  - changeSet:
+      id: 16042021-create-user-constraint
+      author: Stanislav Maksimovich
+      changes:
+        - addPrimaryKey:
+            columnNames: id
+            tableName: usr
+        - addNotNullConstraint:
+            tableName: usr
+            columnName: login
+            columnDataType: varchar(256)
+        - addNotNullConstraint:
+            tableName: usr
+            columnName: password
+            columnDataType: varchar(256)
+
+  - changeSet:
+      id: 16042021-unique-constraint-user
+      author: Stanislav Maksimovich
+      changes:
+        - addUniqueConstraint:
+            tableName: usr
+            columnNames: login
+
+  - changeSet:
+      id: 16042021-default-values-user
+      author: Stanislav Maksimovich
+      changes:
+        - insert:
+            tableName: usr
+            columns:
+              - column:
+                  name: login
+                  value: "User1"
+              - column:
+                  name: password
+                  value: "$2a$08$AfqjB5CPPfJ/7QcOiTJNl.tBSNkNHkLJZY/7UmWCcI3hYvuUgfLE6"
+              - column:
+                  name: balance
+                  value: "8"
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: failed_login_attempts
+                  value: "0"
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 16042021-create-sequense-token-black-list
+      author: Stanislav Maksimovich
+      changes:
+        - createSequence:
+            sequenceName: incorrect_token_seq
+            startValue: 2
+
+  - changeSet:
+      id: 16042021-create-table-token-black-list
+      author: Stanislav Maksimovich
+      changes:
+        - createTable:
+            tableName: incorrect_token
+            columns:
+              - column: { name: id, type: bigint }
+              - column: { name: token , type: varchar(256) }
+
+  - changeSet:
+      id: 16042021-create-token-black-list-constraint
+      author: Stanislav Maksimovich
+      changes:
+        - addPrimaryKey:
+            columnNames: id
+            tableName: incorrect_token
+        - addNotNullConstraint:
+            tableName: incorrect_token
+            columnName: token
+            columnDataType: varchar(256)
+
+  - changeSet:
+      id: 16042021-unique-constraint-token-black-list
+      author: Stanislav Maksimovich
+      changes:
+        - addUniqueConstraint:
+            tableName: incorrect_token
+            columnNames: token
